@@ -7,6 +7,6 @@ CREATE TABLE points (
   title VARCHAR(255) NOT NULL DEFAULT 'point',
   description TEXT,
   latitude DOUBLE PRECISION, -- double precison will round the value of lat and long since those values are longer
-  longitute DOUBLE PRECISION,
+  longitude DOUBLE PRECISION,
   image VARCHAR(255)
-)
+);
