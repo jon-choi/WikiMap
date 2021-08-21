@@ -3,8 +3,8 @@ const router = express.Router();
 
 
 //GET /maps
-router.get('', (req, res) => {
-
+router.get('/', (req, res) => {
+  res.render('../views/map')
 });
 
 module.exports = router;
