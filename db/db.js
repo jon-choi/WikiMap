@@ -8,3 +8,9 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   port: 8080
 });
+
+pool.connect(() => {
+  console.log("connected to database");
+})
+
+module.exports = pool;
