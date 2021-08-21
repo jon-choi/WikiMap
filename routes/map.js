@@ -7,4 +7,6 @@ router.get('/', (req, res) => {
   res.render('../views/map')
 });
 
+
+
 module.exports = router;

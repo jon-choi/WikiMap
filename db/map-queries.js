@@ -7,6 +7,14 @@ const getMaps = () => {
     })
 }
 
+const getMapById = (id) => {
+  return db.query(`SELECT * FROM maps WHERE id = $1`, [id])
+    .then((response) => {
+      return response.rows[0];
+    })
+}
+
 module.exports = {
-  getMaps
+  getMaps,
+  getMapById
 }
