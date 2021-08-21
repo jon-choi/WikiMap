@@ -23,3 +23,10 @@ module.exports = (db) => {
   });
   return router;
 };
+
+
+// do this instead Andy ask to do this
+// app.get('/login/:id', (req, res) => {
+//   req.session.user_id = req.params.id;
+//   res.redirect('/');
+// });
