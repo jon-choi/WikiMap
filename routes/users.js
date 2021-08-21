@@ -21,5 +21,10 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  // router.get("/user_id", (req, res) => {
+  //   db.query(`SELECT * FROM users WHERE id = $1`, [users.id])
+
+  // });
   return router;
 };
