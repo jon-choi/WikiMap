@@ -1,1 +1,49 @@
-<mxfile host="app.diagrams.net" modified="2021-08-20T23:05:14.663Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" version="14.9.7" etag="S_f-yr7oMci6DMxS3ohp" type="github"><diagram id="dsYgJ4PwXiGPWCZf2PpA">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-08-21T00:39:01.820Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="PmINL0iInhJwmR9HKjFX" version="14.9.7" type="github">
+  <diagram id="dsYgJ4PwXiGPWCZf2PpA" name="Page-1">
+    <mxGraphModel dx="1426" dy="2994" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-6" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;fontColor=#333333;fillColor=#E6E6E6;" vertex="1" parent="1">
+          <mxGeometry x="20" y="-1380" width="1130" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="-1360" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-3" value="LOGO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="-1340" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-8" value="&lt;font color=&quot;#666666&quot;&gt;Create Map&amp;nbsp; |&amp;nbsp; My Maps&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=18;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="210" y="-1340" width="230" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-9" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=18;align=left;fontColor=#666666;fillColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1049" y="-1347" width="82.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-10" value="Logout" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=18;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1070.25" y="-1342" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-11" value="&lt;font color=&quot;#666666&quot;&gt;NameUser&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=18;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="930" y="-1342" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-13" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=18;fontColor=#666666;fillColor=#666666;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="-1280" width="530" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-14" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=18;fontColor=#666666;fillColor=#666666;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="-1280" width="531.5" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-15" value="My favourites" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=18;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="20" y="-1260" width="190" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-17" value="- Restaurants in DT&lt;br&gt;- Park in Vancouver&lt;br&gt;- Hiking Trails in Squamish&lt;br&gt;- Camping Near Vancouver" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="-1220" width="490" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-19" value="Maps I contributed" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=18;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="611" y="-1264" width="190" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11v8EEX_bx7JCJvB46Qs-20" value="- Restaurants in DT&lt;br&gt;- Park in Vancouver&lt;br&gt;- Hiking Trails in Squamish&lt;br&gt;- Camping Near Vancouver" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="624" y="-1224" width="490" height="290" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
