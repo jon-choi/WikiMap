@@ -11,11 +11,11 @@ const app        = express();
 const morgan     = require('morgan');
 
 // PG database client/connection setup
-const { Pool } = require('pg');
-const dbParams = require('./db/db.js');
-// const dbParams = require('./lib/db.js');
-const db = new Pool(dbParams);
-//db.connect();
+// const { Pool } = require('pg');
+// const dbParams = require('./db/db.js');
+// // const dbParams = require('./lib/db.js');
+// const db = new Pool(dbParams);
+// //db.connect();
 
 //const db = require('./db/db.js');
 //db.connect();
@@ -41,6 +41,7 @@ app.use(express.static("public"));
 
 
 const mapRouter = require("./routes/map-routes");
+const pointRouter = require("./routes/point-routes");
 //const usersRoutes = require("./routes/users");
 //const widgetsRoutes = require("./routes/widgets");
 
@@ -49,6 +50,8 @@ const mapRouter = require("./routes/map-routes");
 
 //app.use("/api/users", usersRoutes(db));
 app.use('/maps', mapRouter);
+app.use('/points', pointRouter);
+//app.use("/points", pointRouter(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -67,3 +70,5 @@ app.listen(PORT, () => {
 
 // adding a comment here for testing
 // add
+
+// to fix db user----> GRANT ALL PRIVILEGES ON TABLE favourites TO labber;

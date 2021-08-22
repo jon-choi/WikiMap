@@ -6,8 +6,7 @@ const getMaps = () => {
     .then((response) => {
       console.log('------------>', response);
       return response.rows;
-    })//.catch(error => { throw error})
-    //.catch((err) => err.message);
+    })
 }
 
 const getMapById = (id) => {
