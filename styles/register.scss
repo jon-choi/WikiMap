@@ -1,0 +1,41 @@
+@import 'partials/_elements.scss';
+body {
+  margin: 0px;
+  background-image: url('../images/worldbg.jpg');
+  background-color: $background-color;
+  font-family: $main-font;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form.form-group {
+  h3 {
+    margin-top: 5px;
+  }
+  border-style: solid;
+  border-radius: 25px;
+  border-width: 2px;
+  border-color: $border-color;
+  background: $tile-background;
+  box-shadow: $box-shadow;
+  padding: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: $text-title;
+  input.form-control {
+    min-width: 300px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border-color: transparent;
+    color: $text-title;
+    &:focus {
+      outline: none;
+    }
+  }
+}
