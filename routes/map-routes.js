@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getMaps } = require('../db/map-queries');
+const { getMapById, getMaps } = require('../db/map-queries');
 
 //GET /maps
 router.get('/', (req, res) => {
@@ -10,12 +10,16 @@ router.get('/', (req, res) => {
     });
 });
 
+// router.get('/map', (req, res) => {
+//   res.render('../views/map');
+// });
+
 //GET /maps/:map_id
-// router.get(`/:map_id`, (req, res) => {
-//   getMapById()
-//     .then((map_id) => {
-//       res.json(map_id);
-//     })
-// })
+router.get('/:map_id', (req, res) => {
+  getMapById(req.params.map_id)
+    .then((map) => {
+      res.json(map);
+    })
+});
 
 module.exports = router;

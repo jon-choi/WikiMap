@@ -12,9 +12,14 @@ const morgan     = require('morgan');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
-const dbParams = require('./lib/db.js');
+const dbParams = require('./db/db.js');
+// const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
-db.connect();
+//db.connect();
+
+//const db = require('./db/db.js');
+//db.connect();
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -41,9 +46,9 @@ const mapRouter = require("./routes/map-routes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+
+//app.use("/api/users", usersRoutes(db));
 app.use('/maps', mapRouter);
-// app.use("/api/users", usersRoutes(db));
-// app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -54,9 +59,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get('/map', (req, res) => {
-  res.render('../views/map');
-});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
