@@ -12,11 +12,11 @@ const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
-// const { Pool } = require('pg');
+const { Pool } = require('pg');
 // const dbParams = require('./db/db.js');
-// // const dbParams = require('./lib/db.js');
-// const db = new Pool(dbParams);
-// //db.connect();
+const dbParams = require('./lib/db.js');
+const db = new Pool(dbParams);
+db.connect();
 
 //const db = require('./db/db.js');
 //db.connect();
@@ -41,18 +41,19 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 
 
-const mapRouter = require("./routes/map-routes");
-const pointRouter = require("./routes/point-routes");
-//const usersRoutes = require("./routes/users");
-//const widgetsRoutes = require("./routes/widgets");
+// const mapRouter = require("./routes/map-routes");
+// const pointRouter = require("./routes/point-routes");
+const usersRoutes = require("./routes/users");
+const mapsRoutes = require("./routes/maps");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 
-//app.use("/api/users", usersRoutes(db));
-app.use('/maps', mapRouter);
-app.use('/points', pointRouter);
-//app.use("/points", pointRouter(db));
+app.use("/users", usersRoutes(db));
+app.use("/maps", mapsRoutes(db));
+// app.use('/maps', mapRouter);
+// app.use('/points', pointRouter);
+
 // Note: mount other resources here, using the same pattern above
 
 

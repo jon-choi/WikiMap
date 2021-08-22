@@ -47,5 +47,19 @@ module.exports = (db) => {
       res.status(400).json({error: err.message});
     });
   });
+
+  // GET ALL POINTS FROM A PARTICULAR MAP
+  router.get('/:id/points', (req, res) => {
+    const values = req.params.id;
+    db.query(`SELECT * FROM points
+    WHERE map_id = $1`, [values])
+    .then(data => {
+      const maps = data.rows;
+      res.json({maps});
+    })
+    .catch(err => {
+      res.status(400).json({error: err.message});
+    });
+  });
   return router;
 }
