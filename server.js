@@ -12,10 +12,15 @@ const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
-const { Pool } = require('pg');
-const dbParams = require('./lib/db.js');
-const db = new Pool(dbParams);
-db.connect();
+// const { Pool } = require('pg');
+// const dbParams = require('./db/db.js');
+// // const dbParams = require('./lib/db.js');
+// const db = new Pool(dbParams);
+// //db.connect();
+
+//const db = require('./db/db.js');
+//db.connect();
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -34,14 +39,20 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const mapsRoutes = require('./routes/map');
-// const widgetsRoutes = require("./routes/widgets");
+
+
+const mapRouter = require("./routes/map-routes");
+const pointRouter = require("./routes/point-routes");
+//const usersRoutes = require("./routes/users");
+//const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use('/users', usersRoutes(db));
-app.use('/map', mapsRoutes(db));
+
+//app.use("/api/users", usersRoutes(db));
+app.use('/maps', mapRouter);
+app.use('/points', pointRouter);
+//app.use("/points", pointRouter(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -52,10 +63,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get('/login/:id', (req, res) => {
-  req.session.user_id = req.params.id;
-  res.redirect('/');
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
@@ -63,3 +70,5 @@ app.listen(PORT, () => {
 
 // adding a comment here for testing
 // add
+
+// to fix db user----> GRANT ALL PRIVILEGES ON TABLE favourites TO labber;
