@@ -1,0 +1,90 @@
+$color1: rgb(50, 125, 160);
+$color2: rgb(155, 149, 35);
+$color3: rgb(62, 206, 187);
+$color4: rgb(111, 81, 180);
+$color5: rgba(230, 235, 224, 1);
+$shadow: 0.2em 0.2em 0 0 $color4;
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  aside {
+    h3 {
+      color: $color2;
+      text-shadow: 2px 2px $color4;
+    }
+    .aside-content {
+      background-color: $color3;
+      box-shadow: 0.1em 0 0 0 $color4;
+      border-top: solid 0.1em $color4;
+      border-right: 0.1em $color4;
+    }
+    .aside-content::-webkit-scrollbar {
+      color: $color3;
+    }
+    .aside-content::-webkit-scrollbar-thumb {
+      color: $color1;
+    }
+    .turn-red {
+      background-color: $color1;
+    }
+    .turn-green {
+      background-color: $color3;
+    }
+    .turn-yellow {
+      background-color: $color2;
+    }
+    div {
+      text-align: center;
+      h2 {
+        font-family: 'Josefin Sans', sans-serif;
+        color: $color2;
+        text-shadow: 2px 2px $color4;
+      }
+      .map-list-item {
+        box-shadow: $shadow;
+        opacity: 50%;
+        background-color: $color5;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 1.25em;
+        button {
+          border: none;
+          background-color: $color5;
+        }
+        button:focus {
+          outline: 0;
+        }
+      }
+      .map-list-item:hover {
+        opacity: 100%;
+      }
+      .map-list-item:active{
+        box-shadow: none;
+      }
+    }
+  }
+  div {
+    ul {
+      li {
+        border-top-right-radius: 25%;
+        border-bottom: solid 0.1em $color4;
+      }
+      #all-maps {
+        border-top: solid 0.1em $color4;
+        background-color: $color3;
+        box-shadow: 0.1em 0 0 0 $color4;
+      }
+      #favourites {
+        background-color: $color1;
+        box-shadow: 0.1em 0 0 0 $color4;
+      }
+      #contributions {
+        background-color: $color2;
+        box-shadow: 0.1em 0 0 0 $color4;
+      }
+      .left-border {
+        border-left: solid 0.1em $color4;
+      }
+    }
+  }
+}

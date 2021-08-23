@@ -1,19 +1,77 @@
-.main-map {
-  display: flex;
-  flex-direction: row;
-  background-color: purple;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100vh;
+$color1: rgb(50, 125, 160);
+$color2: rgb(155, 149, 35);
+$color3: rgb(62, 206, 187);
+$color4: rgb(111, 81, 180);
+$color5: rgba(230, 235, 224, 1);
+$shadow: 0.2em 0.2em 0 0 $color4;
 
-  .sidebar {
-    height: 100%;
-    width: 25%;
-    background-color: gray;
+.marker-form, .edit-popup {
+  label, h2, p {
+    color: $color2;
+    text-shadow: 1px 1px $color4;
   }
-  .map {
-    height: 100%;
-    width: 75%;
-    background-color: yellowgreen;
+  h2 {
+    text-align: center;
+  }
+  .img-box {
+    background-color: $color2;
+    box-shadow: $shadow;
+    display: flex;
+    justify-content: center;
+    img {
+      margin: 1em;
+      align-self: center;
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 1em;
+  input {
+    margin-bottom: 1em;
+  }
+  .submit {
+    margin-top: 1em;
+  }
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: $color1;
+  box-shadow: $shadow;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+  background-color: $color1;
+}
+
+.btn {
+  z-index: 10;
+  margin: 1em;
+  background-color: $color2;
+  color: $color4;
+  box-shadow: $shadow;
+}
+.btn-light:hover {
+  background-color: $color4;
+  color: $color2;
+  box-shadow: 0.2em 0.2em 0 0 $color2;
+}
+.btn-light:active {
+  box-shadow: none;
+  outline: 0;
+}
+
+.buttons {
+  display:flex;
+  justify-content: space-evenly;
+  .btn {
+    height: 2.5em;
+  }
+  .cancel-button, .edit-button {
+    margin-right: 0;
+    align-self: center;
   }
 }
