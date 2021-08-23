@@ -23,8 +23,15 @@ router.get('/:point_id', (req, res) => {
   getPointById(req.params.point_id)
     .then((point) => {
       res.json(point);
-    })
-});
+    });
 
+//GET /points index.html
+router.get('/public/index', (req, res) => {
+  fetchTweets()
+    .then((points) => {
+      res.json(points);
+    });
+});
+});
 module.exports = router;
 
