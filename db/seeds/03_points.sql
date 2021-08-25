@@ -1,6 +1,5 @@
 INSERT INTO points (map_id, title, description, latitude, longitude, image)
 VALUES
-<<<<<<< HEAD
 (1, 'Corduroy Pie Co', 'Best pizza in the city', 49.25737, -123.12107, 'https://tryhiddengems.com/wp-content/uploads/2017/11/cororoypiecompany3-1024x576.jpg'),
 (1, 'Viet House', 'Delicious pho', 49.25552, -123.11345, 'https://vancouverfoodster.com/wp-content/uploads/2018/01/IMG_1071-1-e1514840163771-225x300.jpg'),
 (1, 'Benkei Ramen', 'Amazing ramen', 49.26347, -123.11656, 'https://s3-media0.fl.yelpcdn.com/bphoto/0Sjl7KNQK1TccXqfYWrnzw/l.jpg'),
@@ -32,8 +31,3 @@ VALUES
 
 
 
-=======
-(1, 1, 'Bacchus Restaurant & Lounge', 'Great restaurant', 49.28292, -122.12271, 'https://assets.simpleviewinc.com/simpleview/image/upload/crm/vancouverbc/bacchus-sign-feat0-9964b9195056b3a_9964ba01-5056-b3a8-49ef16b4d3195f4a.jpg'),
-(2, 2, 'The Chief', 'Best hike in squamish', 49.68328, -123.14423, 'https://www.vancouvertrails.com/images/hikes-small/stawamus-chief.jpg'),
-(3, 3, 'Drinks', 'Best pub downtown', 49.28400, -123.10620, 'https://www.vmcdn.ca/f/files/via/images/buildings/lamplighter-public-house-vancouver.jpg;w=960');
->>>>>>> d7580f00ea3d742accfc0e1d446a8eb45a261fd7
