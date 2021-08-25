@@ -1,0 +1,104 @@
+#map-points {
+  display: flex;
+  flex-direction: column;
+  padding: none;
+  margin-left: 1.76em;
+  // margin-top: 1em;
+
+  h2 {
+    color: #FFFF;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin: 0.6em;
+  }
+
+  #point1 {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    padding: none;
+  }
+
+  #point2 {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    padding: none;
+  }
+
+  #point3 {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    padding: none;
+  }
+
+  #title {
+    margin: 0.5em;
+    outline: none;
+    padding: 0.35em;
+  }
+
+  #description {
+    margin: 0.5em;;
+    outline: none;
+    // padding: 0.5em;
+  }
+
+  #img-url {
+    margin: 0.5em;
+    outline: none;
+    padding: none;
+  }
+
+  .lat-long {
+    flex-direction: row;
+    outline: none;
+    padding: 0.5em;
+
+    .lat {
+      width: 9.1vw;
+      margin-right: 1.4em;
+      outline: none;
+    }
+
+    .long {
+      width: 9.1vw;
+      outline: none;
+    }
+  }
+
+  #point-submit {
+    width: 5em;
+    margin-top: 3em;
+    margin-left: 1em;
+    background-color: #99a4a0;
+    outline: none;
+    border: none;
+    padding-top: 0.3em;
+    color: #FFFF;
+    cursor: pointer;
+    position: relative;
+    bottom: 3em;
+    &:hover {
+      color: #2b3430;
+      box-shadow: 0px 8px 10px #2b3430;;
+    }
+  }
+
+  .add {
+    cursor: pointer;
+    margin: 1em;
+    font-size: 20px;
+    background-color: none;
+    &:hover {
+      color: #c4ac7c;
+      text-shadow: 0px 10px 10px #2b3430;
+    }
+  }
+
+  .fa-plus-circle {
+    padding-right: 0.5em;
+  }
+
+}

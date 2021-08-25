@@ -1,0 +1,26 @@
+body {
+  font-family: 'Comfortaa', serif;
+}
+
+body #map, body #side-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body #side-bar {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#map {
+  height: 90vh;
+  width: 75vw;
+  float: right;
+}

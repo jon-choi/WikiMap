@@ -1,0 +1,48 @@
+nav {
+  font-family: 'Comfortaa', serif;
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 10vh;
+  background-image: url("https://www.transparenttextures.com/patterns/brilliant.png");
+  background-color: #397b96;
+}
+
+#logo {
+  padding-left: 20px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 3em;
+  color: #FFFF;
+  cursor: pointer;
+  &:hover {
+    color: #eeda2b;
+  }
+}
+
+.nav-links {
+  padding-right: 1em;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  color: #FFFF;
+  height: auto;
+  align-items: center;
+  position: relative;
+  right: 1.75em;
+  font-size: 0.5em;
+}
+
+.nav-links li {
+  list-style: none;
+  letter-spacing: 2px;
+  font-size: 2em;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  &:hover {
+    color: #eeda2b;
+  }
+}

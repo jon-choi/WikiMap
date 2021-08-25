@@ -2,112 +2,58 @@
 <html lang="en">
   <head>
     <title>Home</title>
-    <meta charset="UTF-8"/>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
 
-    <!-- leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-    crossorigin=""></script>
-    <!-- bootstrap import -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Roboto&display=swap" rel="stylesheet">
-    <!-- vendors imports -->
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <script
+      src="https://kit.fontawesome.com/7aa139eb66.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- STYLES -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <!-- styles -->
-    <link rel="stylesheet" href="/styles/combined.css" type="text/css"/>
-    <!-- scripts -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/side-bar.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/create.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/points.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/edit.css" type="text/css" />
   </head>
+
+  <nav>
+    <span id="logo"><i class="fas fa-map-signs fa-lg"></i>MAPTIME</span>
+
+
+    <ul class="nav-links">
+      <li id="create">Create New Map</li>
+      <li id="my-maps">My Maps</li>
+      <li id="users">Dennis Reynolds</li>
+    </ul>
+  </nav>
+
   <body>
-    <nav>
-      <h1>MAPTIME</h1>
-      <span id='welcome-message'>
+    <!-- GOOGLE MAP -->
+    <div id="map"></div>
 
-      </span>
-      <div class="form register_form">
-        <form id="Uregister-form">
-          <label for="register-name">Name</label>
-          <input class="register-name" type="text" placeholder="Enter name">
-          <label for="register-email">Email</label>
-          <input class="register-email"type="email" placeholder="Enter email">
-          <label for="register-password">Password</label>
-          <input class="register-password" type="password" placeholder="Enter password">
-          <input class="submit" type="submit">
-        </form>
-      </div>
-      <div class="form login_form">
-        <form id="Ulogin-form">
-          <label for="login-password">Email</label>
-          <input class="login-email" type="email" placeholder="Enter email">
-          <label for="login-password">Password</label>
-          <input class="login-password" type="password" placeholder="Enter password">
-          <input class="submit" type="submit">
-        </form>
-      </div>
-      <span class='login-register-buttons'>
-        <button type="button" id="login" class="btn btn-light">Login</button>
-        <button type="button" id="register" class="btn btn-light">Register</button>
-        <button type="button" id="logout" class="btn btn-light">Logout</button>
-      </span>
-      <div class="alert select-map-alert alert-danger" role="alert"> 🛑 Please select a map before adding a point! 🛑</div>
-      <div class="alert user-login-alert alert-danger" role="alert"> 🛑 Please register or login before adding a point! 🛑</div>
-    </nav>
-    <!-- this div is here for flexbox purposes -->
-    <div class="flexbox-responsive">
-      <main>
-        <div id="mapid" data-mapId = '15'>
+    <!-- SIDE NAV BAR -->
 
-        </div>
-      </main>
-      <aside>
-        <div class="aside-content">
-          <h2 class="all-maps-aside"> all maps</h2>
-          <div id="maps-container" class="all-maps-aside">
+    <section id="side-bar">
+      <!-- Maps list is populated in this section -->
+      <section class="items"></section>
+    </section>
 
-          </div>
-          <h2 class="favourites-aside"> favourites</h2>
-          <h3 id="favourite-notice"> Click on hearts to add favourite maps</h3>
-          <div id="favourites-container" class="favourites-aside">
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/helpers.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/mapApi.js"></script>
+    <script type="text/javascript" src="/scripts/favourites.js"></script>
+    <script type="text/javascript" src="/scripts/map.js"></script>
 
-          </div>
-          <h2 class="contributions-aside" style="color:rgba(155, 193, 188, 1)"> contributions</h2>
-          <h3 id="contribution-notice"> Add a point to a map to contribute</h3>
-          <div id="contributions-container"class="contributions-aside">
-
-          </div>
-        </div>
-          <ul class='map-navigation-menu sidebar-nav'>
-            <li id="all-maps">
-              <img src="/assets/img/map.svg" alt="" style="width: 1.5em" title="all-maps"></li>
-            <li id="favourites" class="left-border">
-              <img src="/assets/img/heart.svg" alt="" style="width: 1.5em" title="favourites"></li>
-            <li id="contributions" class="left-border">
-              <img src="/assets/img/person.svg" alt="" style="width: 1.5em" title="contributions">
-            </li>
-          </ul>
-      </aside>
-    </div>
-    <div id='new-map_form'>
-      Create a new map!
-      <form id='map-form'>
-        <input id="name-field" type="text" name="map-name" placeholder="Name your map!">
-        <input class="btn btn-light" type="submit">
-        <p class="name-alert alert alert-warning" style="display:none" role="alert">Please name your map!</p>
-      </form>
-    </div>
-    <footer class='create-icons'>
-      <div id='new-map_button'>
-        <img src="/assets/img/map.svg" alt="" style="width: 1.5em" title="new-map"></li>
-      </div>
-    </footer>
-    <script type="text/javascript" src="/scripts/client.js"></script>
+    <!-- google api -->
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAA346O0hQdjJvizLWGcH4pd6SI1xrihs&callback=initMap">
+    </script>
   </body>
 </html>
