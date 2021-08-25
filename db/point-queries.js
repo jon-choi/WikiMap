@@ -17,11 +17,10 @@ const getPointById = (id) => {
 
 
 // Insert new point
-const createPoint =  function(pointTitle, description) {
-
-    const query = `INSERT INTO points (title, description) VALUES($1, $2);`;
-            //const query = `INSERT INTO points (user_id, map_id, title, description, latitude, longitude, image )VALUES ($1, $2, $3, $4, $5, $6, $7)  [point.user_id, point.map_id, pointTitle, description, point.latitude, point.longitude, point.image])
-    return db.query(query, [pointTitle, description])
+const createPoint = (pointTitle, description, latitude, longitude, image) => {
+  console.log(createPoint);
+    const query = `INSERT INTO points (user_id, map_id, title, description, latitude, longitude, image) VALUES($1, $2, $3, $4, $5, $6, $7);`;
+    return db.query(query, [ 1, 1, pointTitle, description, latitude, longitude, image])
     .then(() => {
       return { success: true };
     });

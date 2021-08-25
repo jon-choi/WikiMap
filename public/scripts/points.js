@@ -3,155 +3,172 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+const updatePoint = function($, point, data){
+  console.log(data);
+}
 
-$(document).ready(function () {
+const deletePoint = function($, point){
+   const $point = $(`#${point.id}`);
+   $point.remove();
+}
 
-  const loadPoints = () => {
-    $.get('/points')
-      .then((points) => {
-        console.log(points);
-        renderPoints(points);
-      });
-  };
+const createPointElement = function ($, point) {
+  //const $pointTitle = $('<h2>').text(`Point Title: ${point.title}`);
+  //const $description = $('<h2>').text(`Description: ${point.description}`);
+  const $point = $('<div>').addClass('point').attr("id", point.id);
 
+  const $updateForm = $(`
 
+    <form>
+    <article class="articleTweet">
+      <label><span class="bold">Title:</span></label>
+      <input name="pointTitle" class="textareaTweet" value="${point.title}" />
 
-  const $form = $(`
-  <form id="submit-form">
-    <label  for="tweet-text"><span class="bold">user_id</span></label>
-    <input name="user_id" class="textareaTweet" value='1'>
+      <label><span class="bold">Description:</span></label>
+      <input name="description" class="textareaTweet" value="${point.description}" />
 
-    <label  for="tweet-text"><span class="bold">map_id</span></label>
-    <input name="map_id" class="textareaTweet" value='1'>
+      <label  for="tweet-text"><span class="bold">Image</span></label>
+      <input name="image"  class="textareaTweet" value="${point.image}">
 
-    <label  for="tweet-text"><span class="bold">Title</span></label>
-    <input name="pointTitle"  class="textareaTweet">
+      <label  for="tweet-text"><span class="bold">Latitude</span></label>
+      <input name="latitude"  class="textareaTweet"  value="${point.latitude}">
 
-    <label  for="tweet-text"><span class="bold">Latitude</span></label>
-    <input name="latitude"  class="textareaTweet">
+      <label  for="tweet-text"><span class="bold">Longitude</span></label>
+      <input name="longitude"  class="textareaTweet"  value="${point.longitude}">
+      <br/>
+      <div class="actButtons">
+      <button type="submit">Update!</button>
 
-    <label  for="tweet-text"><span class="bold">Longitude</span></label>
-    <input name="longitude"  class="textareaTweet">
-
-    <div class="buttonCounter">
-      <button class="tweetButton" type="submit">new Point</button>
-    </div>
-  </form>
+      </div>
+    </article>
+    </form>
   `);
 
-  $form.on('submit', (event) => {
+  $updateForm.on('submit', (event) => {
     event.preventDefault();
-    const serialized = $form.serialize();
-    console.log(serialized);
+    const serialized = $updateForm.serialize();
+    //console.log("----------------serialized:",serialized);
 
     $.ajax({
-      type: "POST",
-      url: '/points',
+      type: "PATCH",
+      url: `/points/${point.id}`,
       data: serialized
     })
       .then(() => {
-        loadPoints();
+        updatePoint($, point, serialized);
       });
   });
 
-
-
-
-
-  const createPointElement = function (point) {
-    //const $pointTitle = $('<h2>').text(`Point Title: ${point.title}`);
-    //const $description = $('<h2>').text(`Description: ${point.description}`);
-    const $point = $('<div>').addClass('point');
-
-    const $updateForm = $(`
-
-      <form>
-      <article class="articleTweet">
-        <label><span class="bold">Title:</span></label>
-        <input name="pointTitle" class="textareaTweet" value="${point.title}" />
-
-        <label><span class="bold">Description:</span></label>
-        <input name="description" class="textareaTweet" value="${point.description}" />
-
-        <label  for="tweet-text"><span class="bold">Image</span></label>
-        <input name="image"  class="textareaTweet" value="${point.image}">
-
-        <label  for="tweet-text"><span class="bold">Latitude</span></label>
-        <input name="latitude"  class="textareaTweet"  value="${point.latitude}">
-
-        <label  for="tweet-text"><span class="bold">Longitude</span></label>
-        <input name="longitude"  class="textareaTweet"  value="${point.longitude}">
-        <br/>
-        <div class="actButtons">
-        <button type="submit">Update!</button>
-
-        </div>
-      </article>
-      </form>
-    `);
-
-    $updateForm.on('submit', (event) => {
-      event.preventDefault();
-      const serialized = $updateForm.serialize();
-      console.log("----------------serialized:",serialized);
-
-      $.ajax({
-        type: "PATCH",
-        url: `/points/${point.id}`,
-        data: serialized
-      })
-        .then(() => {
-          loadPoints();
-        });
-    });
-
-    const $deleteButton = $('<button>').text('Delete!!');
-    $deleteButton.on('click', () => {
-      $.post(`/points/${point.id}/delete`)
-        .then(() => {
-          loadPoints();
-        });
-    });
-    let $actButtons = $updateForm.find('.actButtons')
-    $actButtons.append($deleteButton);
-    $point.append( $updateForm );
-    return $point;
-
-  };
-
-
-  const renderPoints = (points) => {
-    const $container = $('#wikimap-container');
-    $container.empty(); // $container.html('');
-    $container.append($form);
-    for (const point of points) {
-
-        const $point = createPointElement(point);
-        $container.append($point);
-
-    }
-  };
-
-  loadPoints();
-
-  const $newPointForm = $('#submit-form');
-  $newPointForm.on('submit', function (event) {
-    event.preventDefault();
-    const serialized = $(this).serialize();
-    // const serialized = $newProductForm.serialize();
-    console.log(serialized);
-
-    // 200 to <400 .then
-    // >= 400 .catch
-    $.post('/points', serialized)
+  const $deleteButton = $('<button>').text('Delete!!');
+  $deleteButton.on('click', () => {
+    $.post(`/points/${point.id}/delete`)
       .then(() => {
-        window.location = '/';
-      })
-      .catch(() => {
-        window.location = '/error-page';
+        deletePoint($);
+        //loadPoints($)
       });
   });
-});
+  let $actButtons = $updateForm.find('.actButtons')
+  $actButtons.append($deleteButton);
+  $point.append( $updateForm );
+  return $point;
+};
+
+
+
+
+
+function initMap(arr) {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 8,
+    center: { lat: 49.25922, lng: -123.09233 },
+  });
+  // Create an array of alphabetical characters used to label the markers.
+  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // Add some markers to the map.
+  // Note: The code uses the JavaScript Array.prototype.map() method to
+  // create an array of markers based on a given "locations" array.
+  // The map() method here has nothing to do with the Google Maps API.
+  const markers = arr.map((location, i) => {
+    return new google.maps.Marker({
+      position: location,
+      label: labels[i % labels.length],
+    });
+  });
+  // Add a marker clusterer to manage the markers.
+  new MarkerClusterer(map, markers, {
+    imagePath:
+      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  });
+
+}
+//const locations = arr;
+
+const renderPoints = ($, points) => {
+  let arr=[];
+  console.log("-------------------///",points[0].map_id);
+  const $container = $('#points-container');
+  console.log($container, $, $);
+  $container.empty();
+  for (const point of points) {
+    console.log("Latitude:",point.latitude);
+      const $point = createPointElement($, point);
+      $container.append($point);
+      arr.push({lat: point.latitude, lng: point.longitude}) //= {lat:point.latitude, lng: point.longitude}
+      console.log("****************arr",arr);
+      initMap(arr);
+  }
+};
+
+const loadPoints = ($) => {
+
+  $.get('/points')
+    .then((points) => {
+      console.log("==============",points);
+      renderPoints($, points);
+    });
+};
+
+//$(document).ready(function ($) {
+
+
+  const $form = $("#point-submit-form");
+  $form.hide();
+  //console.log($form);
+  $form.on('submit', (event) => {
+    event.preventDefault();
+    const serialized = $form.serialize();
+    console.log("serialized:",serialized);
+
+    $.ajax({
+      type: "POST",
+      url: `/points`,
+      data: serialized
+    })
+      .then(() => {
+        loadPoints($);
+      });
+  });
+//});
+  //loadPoints($);
+
+  // const $newPointForm = $('#submit-form');
+  // $newPointForm.on('submit', function (event) {
+  //   event.preventDefault();
+  //   const serialized = $(this).serialize();
+  //   // const serialized = $newProductForm.serialize();
+  //   console.log(serialized);
+
+  //   // 200 to <400 .then
+  //   // >= 400 .catch
+  //   $.post('/points', serialized)
+  //     .then(() => {
+  //       window.location = '/';
+  //     })
+  //     .catch(() => {
+  //       window.location = '/error-page';
+  //     });
+  // });
+
 // });
 //   // Loads tweets from - tweets Json data*******************************************
 //   // const fetchPoints = function () {

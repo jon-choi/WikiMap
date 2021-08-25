@@ -66,7 +66,7 @@ router.patch('/:id', (req, res) => {
     });
 });
 
-// POST /mapss/:id/delete
+// POST /maps/:id/delete
 router.post('/:id/delete', (req, res) => {
   mapQueries.deleteMap(req.params.id)
     .then(() => {

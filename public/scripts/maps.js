@@ -5,7 +5,6 @@
  */
 
 
-
 $(document).ready(function () {
 
   const loadMaps = () => {
@@ -92,9 +91,11 @@ $(document).ready(function () {
 
     const $addPoint = $('<button>').text('Add Point');
     $addPoint.on('click', () => {
+      $("#point-submit-form").show();
       $.get(`/maps/${map.id}`)
         .then((points) => {
-          loadPoints(points);
+          $("#wikimap-container").hide();
+          renderPoints($, points);
         });
     });
 

@@ -83,3 +83,4 @@ app.listen(PORT, () => {
 // add
 
 // to fix db user----> GRANT ALL PRIVILEGES ON TABLE favourites TO labber;
+//grant all on sequence points_id_seq to labber;

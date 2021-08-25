@@ -43,18 +43,18 @@ router.get('/:point_id', (req, res) => {
 
 
 // POST /points create point
-router.post("/", function(req, res) {
-  const {pointTitle, description} = req.body;
-  pointQueries.createPoint(pointTitle, description)
+router.post('/', function(req, res) {
+  const { pointTitle, description, latitude, longitude, image} = req.body;
+  console.log("-----------req.body",req.body);
+  pointQueries.createPoint(pointTitle, description, latitude, longitude, image)
     .then(() => {
       //res.redirect('/points');
       //res.json({ success: true });
       //res.cookie('user_id', 42);
-      res.status(201).send();
+      //res.status(401).send();
+      res.json({ success: true });
     })
-    .catch(err => {
-      res.json({error: err.message});
-    });
+
 });
 
 // POST /products/:id
