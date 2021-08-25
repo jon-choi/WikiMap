@@ -90,20 +90,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  // router.post("/", function(req, res) {
-  //   const {pointTitle, description} = req.body;
-  //   pointQueries.createPoint(pointTitle, description)
-  //     .then(() => {
-  //       //res.redirect('/points');
-  //       //res.json({ success: true });
-  //       //res.cookie('user_id', 42);
-  //       res.status(201).send();
-  //     })
-  //     .catch(err => {
-  //       res.json({error: err.message});
-  //     });
-  // });
-  // const helpers = require('../scripts/helpers');
 
   // Deletes a map
   router.delete("/:id/delete", (req, res) => {

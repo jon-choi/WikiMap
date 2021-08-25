@@ -1,4 +1,10 @@
-// const locations = [
+
+
+// function initMap(locations) {
+//   const map = new google.maps.Map(document.getElementById("map"), {
+//     zoom: 12,
+//     center: { lat: 49.259660, lng: -123.107220 },
+//     styles: [
 // {name: 'Corduroy Pie Co', description: 'Best pizza in the city', lat: 49.25737, long: -123.12107, imgurl: 'https://tryhiddengems.com/wp-content/uploads/2017/11/cororoypiecompany3-1024x576.jpg'},
 // {name: 'Viet House', description: 'Delicious pho', lat: 49.25552, long: -123.11345, imgurl: 'https://vancouverfoodster.com/wp-content/uploads/2018/01/IMG_1071-1-e1514840163771-225x300.jpg'},
 // {name: 'Benkei Ramen', description: 'Amazing ramen', lat: 49.26347, long: -123.11656, imgurl: 'https://s3-media0.fl.yelpcdn.com/bphoto/0Sjl7KNQK1TccXqfYWrnzw/l.jpg'},
@@ -22,31 +28,24 @@
 // {name: 'The Chief', description: 'Best hike in squamish', lat: 49.68328, long: -123.14423, imgurl: 'https://www.vancouvertrails.com/images/hikes-small/stawamus-chief.jpg'},
 // {name: 'Grouse Grind', description: 'Amazing view at the top', lat: 49.37943, long: -123.08365, imgurl: 'https://lh5.googleusercontent.com/p/AF1QipNNTXts4hMfpbwWfkMzXH0T6MWOD_ykt28sS462=w408-h306-k-no'},
 // {name: 'Howe Sound Crest Trail', description: 'Nice hike', lat: 49.40584, long: -123.20712, imgurl: 'https://lh5.googleusercontent.com/p/AF1QipPnFQZQGJAFKUxdTIgsh45-SlBCRhARslXv9ZFy=w408-h306-k-no'}
-// ];
-
-// function initGoogleMap(){
-
-//   const infowindow = new google.maps.InfoWindow(); // Only one InfoWindow
-//   const map = new google.maps.Map(document.getElementById('map-canvas'), {
-//       zoom: 6,
-//       center: new google.maps.LatLng(45, 15)
+// ]
+//   });
+//   // Create an array of alphabetical characters used to label the markers.
+//   const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//   // Add some markers to the map.
+//   // Note: The code uses the JavaScript Array.prototype.map() method to
+//   // create an array of markers based on a given "locations" array.
+//   // The map() method here has nothing to do with the Google Maps API.
+//   const markers = locations.map((locations, i) => {
+//     return new google.maps.Marker({
+//       position: locations,
+//       label: labels[i % labels.length],
+//     });
+//   });
+//   // Add a marker clusterer to manage the markers.
+//   new MarkerClusterer(map, markers, {
+//     imagePath:
+//       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
 //   });
 
-//   function placeMarker( loc ) {
-//     const marker = new google.maps.Marker({
-//       position : new google.maps.LatLng( loc.lat, loc.lng ),
-//       map : map
-//     });
-//     google.maps.event.addListener(marker, 'click', function(){
-//         infowindow.close(); // Close previously opened infowindow
-//         infowindow.setContent(`<div id="infowindow">${loc.name}</div>`);
-//         infowindow.open(map, marker);
-//     });
-//   }
-
-//   // ITERATE ALL LOCATIONS. Pass every location to placeMarker
-//   locations.forEach( placeMarker );
-
 // }
-
-// google.maps.event.addDomListener(window, 'load', initGoogleMap);

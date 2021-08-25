@@ -100,7 +100,7 @@ $(document).ready(() => {
     event.preventDefault();
     const title = event.target.form[0].value;
     const description = event.target.form[1].value;
-    $.ajax('/maps', {
+    $.post('/maps', {
       user_id: 1,
       title: title,
       description: description
@@ -241,7 +241,7 @@ $(document).ready(() => {
     const title3 = event.target.form[10].value;
     const description3 = event.target.form[11].value;
     const imgurl3 = event.target.form[12].value;
-    $.ajax(`/users/1/favourites`, {
+    $.post(`/users/1/favourites`, {
       points: JSON.stringify([
         {
           title: title1,
