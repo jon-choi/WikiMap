@@ -27,7 +27,7 @@ const createMarkers = (markers) => {
 }
 
 const loadPoints = (id) => {
-  $.ajax(`/maps/1/points`, (res) => {
+  $.ajax(`/maps/${id}/points`, (res) => {
     for (const latlong of res.maps) {
       markers.push([latlong.latitude, latlong.longitude]);
     }

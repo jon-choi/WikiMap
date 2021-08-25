@@ -120,7 +120,7 @@ module.exports = (db) => {
   });
 
   // Edits a point
-  router.patch("/:id/edit", (req, res) => {
+  router.patch("/:id", (req, res) => {
     const values = req.params.id;
     const { title, description, image, latitude, longitude, id } = req.body;
     const query = `UPDATE points SET title = $1,

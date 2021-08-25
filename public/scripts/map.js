@@ -115,14 +115,14 @@ $(document).ready(() => {
     $sideBar.append($sideBarForm);
   });
 
-  const createMapItem = (maps) => {
+  const createMapItem = (map) => {
     const mapTemplate =
       `<section class="items">
     <div class="map-link">
-    <button type="submit" class="point-btn" id="${maps.id}">${maps.title}</button>
+    <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
     <span class="edit-delete">
-    <span id="${maps.id}" class="edit"> <i class="fas fa-edit fa-lg"> </i></span>
-    <span id="${maps.id}" class="delete"><i class="fas fa-trash fa-lg"></i> </span>
+    <span id="${map.id}" class="edit"> <i class="fas fa-edit fa-lg"> </i></span>
+    <span id="${map.id}" class="delete"><i class="fas fa-trash fa-lg"></i> </span>
     </span>
     </div>
     </section>
@@ -135,8 +135,8 @@ $(document).ready(() => {
     const $header = header("My Maps");
     $('#side-bar').append($header);
     for (const user of data) {
-      const $maps = createMapItem(user);
-      $('#side-bar').append($maps);
+      const $map = createMapItem(user);
+      $('#side-bar').append($map);
     }
   };
 
