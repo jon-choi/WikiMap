@@ -1,5 +1,8 @@
 INSERT INTO maps (user_id, title, description)
 VALUES
-(1, 'Best Restaurants', 'All the best places in Vancouver'),
-(2, 'Best Hikes', 'Every hike in greater Vancouver area'),
-(3, 'Best Pubs', 'All the craziest pubs downtown');
+(1, 'Restaurants', 'Best places to eat'),
+(1, 'Cocktail Bars', 'Best cocktails'),
+(2, 'Cafes', 'Best cappucinos'),
+(2, 'Parks', 'Best hangout spot'),
+(3, 'Beaches', 'Places to tan'),
+(3, 'Hikes', 'Great workout');
