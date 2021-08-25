@@ -43,8 +43,6 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const mapsRoutes = require('./routes/maps');
 const usersRoutes = require('./routes/users');
-// const mapRouter = require("./routes/map-routes");
-// const pointRouter = require("./routes/point-routes"); // erminios stuff
 
 
 // Mount all resource routes
@@ -52,8 +50,6 @@ const usersRoutes = require('./routes/users');
 
 app.use('/maps', mapsRoutes(db));
 app.use('/users', usersRoutes(db));
-// app.use('/maps', mapRouter);
-// app.use('/points', pointRouter);
 
 
 
