@@ -37,12 +37,32 @@ module.exports = (db) => {
 
   // Creates new map
   router.post("/", (req, res) => {
+
     const { user_id, title, description } = req.body;
+
     db.query(`INSERT INTO maps (user_id, title, description)
-    VALUES ($1, $2, $3) RETURNING *`, [user_id, title, description])
+    VALUES ($1, $2, $3) RETURNING *;`, [user_id, title, description])
       .then(data => {
+        console.log(data);
         const maps = data.rows[0];
         res.json({ maps });
+      })
+      .catch(err => {
+        console.log(err);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  //Retrieve map from a specific map
+  router.get("/:id/maps", (req, res) => {
+    const values = req.params.id;
+    db.query(`SELECT * FROM maps
+    WHERE map_id = $1`, [values])
+      .then(data => {
+        const map = data.rows[0];
+        res.json({ map });
       })
       .catch(err => {
         res
@@ -50,6 +70,8 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+
 
   //Retrieve all points from a specific map
   router.get("/:id/points", (req, res) => {
@@ -78,6 +100,7 @@ module.exports = (db) => {
       const promise = db.query(`INSERT INTO points (map_id, title, description, latitude, longitude, image)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [values, point.title, point.description, point.latitude, point.longitude, point.image]);
       promises.push(promise);
+      console.log(promise);
     }
     Promise.all(promises)
       .then(data => {
@@ -110,11 +133,11 @@ module.exports = (db) => {
     const values = req.params.id;
     const { title, description, image, latitude, longitude, id } = req.body;
     const query = `UPDATE points SET title = $1,
-    description = $2,
-    image = $3,
-    latitude = $4,
-    longitude = $5
-    WHERE map_id = $6 AND id = $7 RETURNING *;`;
+                  description = $2,
+                  image = $3,
+                  latitude = $4,
+                  longitude = $5
+                  WHERE map_id = $6 AND id = $7 RETURNING *;`;
     db.query(query, [title, description, image, latitude, longitude, values, id])
     .then(data => {
       const maps = data.rows;

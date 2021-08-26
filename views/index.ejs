@@ -26,9 +26,18 @@
 
 
     <ul class="nav-links">
+    <% if (!user) { %>
+
+      <li id="users">
+        <a href="/login?user=Emily"> Login </a>
+    <% } else { %>
       <li id="create">Create New Map</li>
       <li id="my-maps">My Maps</li>
-      <li id="users">Dennis Reynolds</li>
+        <h5><%=user%></h5>
+        <a href="/logout"> Logout </a>
+    <% } %>
+
+      </li>
     </ul>
   </nav>
 

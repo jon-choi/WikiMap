@@ -5,8 +5,6 @@ $(document).ready(() => {
   let markers = [];
   let editButton = [];
 
-
-
   const createMapForm = () => {
     const formTemplate =
       `<form id="new-map">
@@ -21,13 +19,13 @@ $(document).ready(() => {
 
   const createUpdateMapForm = (data) => {
     const updateMapForm =
-    `<form id="update-map">
-      <h2>Create New Map</h2>
-      <input type="text" id="update-map-title" placeholder="title" value="${data.maps[0].title}">
-      <input type="text" id="update-map-description" placeholder="description" value="${data.maps[0].description}">
-      <button id="submit-btn" type="submit">Save</button>
-    </form>
-  `;
+      `<form id="update-map">
+        <h2>Create New Map</h2>
+        <input type="text" id="update-map-title" placeholder="title" value="${data.maps[0].title}">
+        <input type="text" id="update-map-description" placeholder="description" value="${data.maps[0].description}">
+        <button id="submit-btn" type="submit">Save</button>
+        </form>
+      `;
     return updateMapForm;
   };
 
@@ -110,7 +108,6 @@ $(document).ready(() => {
     });
   });
 
-
   // SUBMIT FORM FOR NEW MAP
   const $sideBar = $('#side-bar');
   $sideBar.on('click', '#submit-btn', function(event) {
@@ -166,10 +163,23 @@ $(document).ready(() => {
 
 
   //*************************************Update Map */
+  const $createUpdateMap = $('#create');
+  $createUpdateMap.on('click', () => {
+    emptyContainer();
+    const $sideBar = createUpdateMapForm();
+    $('#side-bar').append($sideBar);
+    $(() => {
+      const options = {
+        zoom: 12,
+        center: { lat: 49.259660, lng: -123.107220 },
+      };
+      map = new google.maps.Map($('#map').get(0), options);
+    });
+  });
 
   const renderUpdateMap = (data) => {
     emptyContainer();
-    const $header = header("My Maps");
+    const $header = header("Update Map");
     $('#side-bar').append($header);
     for (const user of data) {
       const $map = createUpdateMapForm(user);
@@ -200,13 +210,13 @@ $(document).ready(() => {
   }
 
   // GET request to edit map
-  const $editMaps = $('#side-bar');
-  $editMaps.on('click', '.editMaps', (event) => {
-    $.get(`/maps/${event.currentTarget.id}/maps`, (res) => {
+  const $editMap = $('#side-bar');
+  $editMap.on('click', '.editMap', (event) => {
+    $.get(`/maps/${event.currentTarget.id}/map`, (res) => {
       editButton.push(event.currentTarget.id);
-      const maps = res;
+      const map = res;
       emptyContainer();
-      const updateMapForm = createUpdateMapForm(maps);
+      const updateMapForm = createUpdateMapForm(map);
       $('#side-bar').append(updateMapForm);
     })
   });

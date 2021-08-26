@@ -5,32 +5,17 @@ $(document).ready(() => {
   let markers = [];
   let editButton = [];
 
-
-
   const createMapForm = () => {
     const formTemplate =
       `<form id="new-map">
         <h2>Create New Map</h2>
         <input type="text" id="new-map-title" placeholder="title">
         <input type="text" id="new-map-description" placeholder="description">
-        <button id="submit-btn" type="submit">Save</button>
+        <button id="submit-btn" type="submit">Next</button>
         </form>
       `;
     return formTemplate;
   };
-
-  const createUpdateMapForm = (data) => {
-    const updateMapForm =
-    `<form id="update-map">
-      <h2>Create New Map</h2>
-      <input type="text" id="update-map-title" placeholder="title" value="${data.maps[0].title}">
-      <input type="text" id="update-map-description" placeholder="description" value="${data.maps[0].description}">
-      <button id="submit-btn" type="submit">Save</button>
-    </form>
-  `;
-    return updateMapForm;
-  };
-
 
   const createPointForm = () => {
     const pointTemplate =
@@ -95,7 +80,6 @@ $(document).ready(() => {
     return editForm;
   };
 
-
   const $create = $('#create');
   $create.on('click', () => {
     emptyContainer();
@@ -109,7 +93,6 @@ $(document).ready(() => {
       map = new google.maps.Map($('#map').get(0), options);
     });
   });
-
 
   // SUBMIT FORM FOR NEW MAP
   const $sideBar = $('#side-bar');
@@ -135,13 +118,13 @@ $(document).ready(() => {
   const createMapItem = (map) => {
     const mapTemplate =
       `<section class="items">
-        <div class="map-link">
-        <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
-        <span class="edit-delete">
-        <span id="${map.id}" class="edit"><i class="fas fa-edit fa-lg"> </i></span>
-        <span id="${map.id}" class="delete"><i class="fas fa-trash fa-lg"></i> </span>
-        </span>
-        </div>
+    <div class="map-link">
+    <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
+    <span class="edit-delete">
+    <span id="${map.id}" class="edit"> <i class="fas fa-edit fa-lg"> </i></span>
+    <span id="${map.id}" class="delete"><i class="fas fa-trash fa-lg"></i> </span>
+    </span>
+    </div>
     </section>
     `;
     return mapTemplate;
@@ -162,57 +145,6 @@ $(document).ready(() => {
       renderUsersMaps(res.users);
     });
   };
-
-
-
-  //*************************************Update Map */
-
-  const renderUpdateMap = (data) => {
-    emptyContainer();
-    const $header = header("My Maps");
-    $('#side-bar').append($header);
-    for (const user of data) {
-      const $map = createUpdateMapForm(user);
-      $('#side-bar').append($map);
-    }
-  };
-
-  const loadUpdateMap = (id) => {
-    $.get(`/users/${id}`, (res) => {
-      renderUpdateMap(res.users);
-    });
-  };
-
-  // function to edit map
-  $.patch = function(url, data, callback, type) {
-    if ($.isFunction(data)) {
-      type = type || callback,
-        callback = data,
-        data = {}
-    }
-    return $.ajax({
-      url: url,
-      type: 'PATCH',
-      success: callback,
-      data: data,
-      contentType: type
-    });
-  }
-
-  // GET request to edit map
-  const $editMaps = $('#side-bar');
-  $editMaps.on('click', '.editMaps', (event) => {
-    $.get(`/maps/${event.currentTarget.id}/maps`, (res) => {
-      editButton.push(event.currentTarget.id);
-      const maps = res;
-      emptyContainer();
-      const updateMapForm = createUpdateMapForm(maps);
-      $('#side-bar').append(updateMapForm);
-    })
-  });
-  //*************************************end Update Map */
-
-
 
   // function to edit points
   $.patch = function(url, data, callback, type) {
