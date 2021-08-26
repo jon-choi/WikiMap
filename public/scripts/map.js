@@ -17,38 +17,37 @@ $(document).ready(() => {
     return formTemplate;
   };
 
-  const createPointForm = () => {
-    const pointTemplate =
-      (`<form id="map-points">
+  const createPointForm = (map_id) => {
+    const pointTemplate = $(`
+      <form id="map-points">
       <div id="point1">
       <h2>Point one</h2>
-        <input type="text" id="title" placeholder="title">
-        <input type="text" id="description" placeholder="description">
-        <input type="url" id="img-url" placeholder="imgURL">
-        <span class="lat-long"><input type="text" class="lat" placeholder="latitude">
-        <input type="text" class="long" placeholder="longitude"></span>
+        <input name="title" type="text" id="title" placeholder="title">
+        <input name="description" type="text" id="description" placeholder="description">
+        <input name="image" type="url" id="img-url" placeholder="imgURL">
+        <span class="lat-long"><input name="latitude" type="text" class="lat" placeholder="latitude">
+        <input name="longitude" type="text" class="long" placeholder="longitude"></span>
       </div>
-      <div id="point2">
-      <h2>Point two</h2>
-        <input type="text" id="title" placeholder="title">
-        <input type="text" id="description" placeholder="description">
-        <input type="url" id="img-url" placeholder="imgURL">
-        <span class="lat-long"><input type="text" class="lat" placeholder="latitude">
-        <input type="text" class="long" placeholder="longitude"></span>
-      </div>
-      <div id="point3">
-      <h2>Point three</h2>
-        <input type="text" id="title" placeholder="title">
-        <input type="text" id="description" placeholder="description">
-        <input type="url" id="img-url" placeholder="imgURL">
-        <span class="lat-long"><input type="text" class="lat" placeholder="latitude">
-        <input type="text" class="long" placeholder="longitude"></span>
-      </div>
+
+
       <button type="submit" id="point-submit">Submit</button>
     </form>
-      `);
+      `); console.log(pointTemplate);
+      console.log(map_id);
+      pointTemplate.submit((event) => {
+        event.preventDefault();
+        console.log('form has submitted')
+        const data = pointTemplate.serialize();
+        console.log(data)
+        $.ajax({url: `/maps/${map_id}`, method: 'put', data})
+        .then((result) => {
+          console.log(result);
+        })
+
+      });
       return pointTemplate;
-  };
+    };
+
   //
   const createEditForm = (data) => {
     const editForm =
@@ -107,11 +106,12 @@ $(document).ready(() => {
       .done(function(data) {
         mapId.push(data.maps.id);
         userId.push(data.maps.user_id);
+        emptyContainer();
+    const $sideBarForm = createPointForm(data.maps.id);
+    $sideBar.append($sideBarForm);
       });
 
-    emptyContainer();
-    const $sideBarForm = createPointForm();
-    $sideBar.append($sideBarForm);
+
   });
 
   const createMapItem = (map) => {
@@ -229,44 +229,44 @@ $(document).ready(() => {
   });
 
   // Hardcoded user***
-  $sideBar.on('click', '#point-submit', function(event) {
-    event.preventDefault();
-    const title1 = event.target.form[0].value;
-    const description1 = event.target.form[1].value;
-    const imgurl1 = event.target.form[2].value;
-    const title2 = event.target.form[5].value;
-    const description2 = event.target.form[6].value;
-    const imgurl2 = event.target.form[7].value;
-    const title3 = event.target.form[10].value;
-    const description3 = event.target.form[11].value;
-    const imgurl3 = event.target.form[12].value;
-    $.ajax(`/users/1/favourites`, {
-      points: JSON.stringify([
-        {
-          title: title1,
-          description: description1,
-          image_url: imgurl1,
-          latitude: 49.282897,
-          longitude: -123.120386
-        },
-        {
-          title: title2,
-          description: description2,
-          image_url: imgurl2,
-          latitude: 49.251970,
-          longitude: -123.067680
-        },
-        {
-          title: title3,
-          description: description3,
-          image_url: imgurl3,
-          latitude: 49.263910,
-          longitude: -123.098690
-        }
-      ])
-    });
-    loadUserMaps(1);
-  });
+  // $sideBar.on('click', '#point-submit', function(event) {
+  //   event.preventDefault();
+  //   const title1 = event.target.form[0].value;
+  //   const description1 = event.target.form[1].value;
+  //   const imgurl1 = event.target.form[2].value;
+  //   const title2 = event.target.form[5].value;
+  //   const description2 = event.target.form[6].value;
+  //   const imgurl2 = event.target.form[7].value;
+  //   const title3 = event.target.form[10].value;
+  //   const description3 = event.target.form[11].value;
+  //   const imgurl3 = event.target.form[12].value;
+  //   $.ajax(`/users/1/favourites`, {
+  //     points: JSON.stringify([
+  //       {
+  //         title: title1,
+  //         description: description1,
+  //         image_url: imgurl1,
+  //         latitude: 49.282897,
+  //         longitude: -123.120386
+  //       },
+  //       {
+  //         title: title2,
+  //         description: description2,
+  //         image_url: imgurl2,
+  //         latitude: 49.251970,
+  //         longitude: -123.067680
+  //       },
+  //       {
+  //         title: title3,
+  //         description: description3,
+  //         image_url: imgurl3,
+  //         latitude: 49.263910,
+  //         longitude: -123.098690
+  //       }
+  //     ])
+  //   });
+  //   loadUserMaps(1);
+  // });
 
   getPoints('#side-bar')
 

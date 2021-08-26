@@ -99,16 +99,11 @@ module.exports = (db) => {
   });
 
   // Edits a point
-  router.patch("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
     const values = req.params.id;
-    const { title, description, image, latitude, longitude, id } = req.body;
-    const query = `UPDATE points SET title = $1,
-    description = $2,
-    image = $3,
-    latitude = $4,
-    longitude = $5
-    WHERE map_id = $6 AND id = $7 RETURNING *;`;
-    db.query(query, [title, description, image, latitude, longitude, values, id])
+    const { title, description, image, latitude, longitude } = req.body;
+    const query = `INSERT INTO points (title, description, image, latitude, longitude, map_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    db.query(query, [title, description, image, latitude, longitude, values])
     .then(data => {
       const maps = data.rows;
       res.json({maps});
@@ -116,6 +111,7 @@ module.exports = (db) => {
     .catch(err => {
       res.status(500).json({error: err.message});
     });
+
   });
 
 
