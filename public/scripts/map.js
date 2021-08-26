@@ -56,23 +56,23 @@ $(document).ready(() => {
       `<form id="edit-points">
       <div id="edit-point1">
       <h2>Point one</h2>
-        <input type="text" id="title" placeholder="title" value="${data.maps[0].title}">
-        <input type="text" id="description" placeholder="description" value="${data.maps[0].description}">
-        <input type="url" id="image" placeholder="imgURL" value="${data.maps[0].image}">
+        <input type="text" id="title" placeholder="title" value="${data.maps[0]?.title}">
+        <input type="text" id="description" placeholder="description" value="${data.maps[0]?.description}">
+        <input type="url" id="image" placeholder="imgURL" value="${data.maps[0]?.image}">
         <button type="submit" id="edit-submit-1">Edit</button>
       </div>
       <div id="edit-point2">
       <h2>Point two</h2>
-        <input type="text" id="title" placeholder="title" value="${data.maps[1].title}">
-        <input type="text" id="description" placeholder="description" value="${data.maps[1].description}">
-        <input type="url" id="image" placeholder="imgURL" value="${data.maps[1].image}">
+        <input type="text" id="title" placeholder="title" value="${data.maps[1]?.title}">
+        <input type="text" id="description" placeholder="description" value="${data.maps[1]?.description}">
+        <input type="url" id="image" placeholder="imgURL" value="${data.maps[1]?.image}">
         <button type="submit" id="edit-submit-2">Edit</button>
       </div>
       <div id="edit-point3">
       <h2>Point three</h2>
-        <input type="text" id="title" placeholder="title" value="${data.maps[2].title}">
-        <input type="text" id="description" placeholder="description" value="${data.maps[2].description}">
-        <input type="url" id="image" placeholder="imgURL" value="${data.maps[2].image}">
+        <input type="text" id="title" placeholder="title" value="${data.maps[2]?.title}">
+        <input type="text" id="description" placeholder="description" value="${data.maps[2]?.description}">
+        <input type="url" id="image" placeholder="imgURL" value="${data.maps[2]?.image}">
         <button type="submit" id="edit-submit-3">Edit</button>
       </div>
     </form>
@@ -241,7 +241,7 @@ $(document).ready(() => {
     const title3 = event.target.form[10].value;
     const description3 = event.target.form[11].value;
     const imgurl3 = event.target.form[12].value;
-    $.post(`/users/1/favourites`, {
+    $.ajax(`/users/1/favourites`, {
       points: JSON.stringify([
         {
           title: title1,
