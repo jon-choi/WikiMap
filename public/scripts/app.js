@@ -2,7 +2,7 @@ let map;
 
 function initMap() {
   const options = {
-    zoom: 12,
+    zoom: 1,
     center: { lat: 49.259660, lng: -123.107220 },
   };
   map = new google.maps.Map($('#map').get(0), options);
@@ -18,7 +18,12 @@ $(document).ready(() => {
     `<section class="items">
     <div class="map-link">
     <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
+<<<<<<< HEAD
+    <span class="favourite"><i id="${map.id}" class="fas fa-heart fa-lg"></i></span>
+
+=======
     <span class="favourite"><i id="${map.id}" class="far fa-heart fa-lg"></i></span>
+>>>>>>> b9eb01a5eb591e076e8d74fdff60aa2fd6e80f1b
     </div>
     </section>
     `;

@@ -22,7 +22,6 @@ const db = new Pool(dbParams);
 db.connect();
 
 
-
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -61,6 +60,7 @@ app.use('/users', usersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
+  //req.session.user = req.query.user;
   const user = req.session.user;
   res.render("index", {user});
 });
@@ -89,3 +89,4 @@ app.listen(PORT, () => {
 
 // to fix db user----> GRANT ALL PRIVILEGES ON TABLE favourites TO labber;
 //grant all on sequence points_id_seq to labber;
+// ALTER USER labber WITH SUPERUSER;  change labber to be SUPERUSER

@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
 
   let mapId = [];
@@ -28,8 +29,6 @@ $(document).ready(() => {
         <span class="lat-long"><input name="latitude" type="text" class="lat" placeholder="latitude">
         <input name="longitude" type="text" class="long" placeholder="longitude"></span>
       </div>
-
-
       <button type="submit" id="point-submit">Submit</button>
     </form>
       `); console.log(pointTemplate);
@@ -213,9 +212,4 @@ $(document).ready(() => {
     });
     loadUserMaps(1);
   });
-
-
-
-  getPoints('#side-bar')
-
 });
