@@ -214,45 +214,7 @@ $(document).ready(() => {
     loadUserMaps(1);
   });
 
-  // Hardcoded user***
-  // $sideBar.on('click', '#point-submit', function(event) {
-  //   event.preventDefault();
-  //   const title1 = event.target.form[0].value;
-  //   const description1 = event.target.form[1].value;
-  //   const imgurl1 = event.target.form[2].value;
-  //   const title2 = event.target.form[5].value;
-  //   const description2 = event.target.form[6].value;
-  //   const imgurl2 = event.target.form[7].value;
-  //   const title3 = event.target.form[10].value;
-  //   const description3 = event.target.form[11].value;
-  //   const imgurl3 = event.target.form[12].value;
-  //   $.ajax(`/users/1/favourites`, {
-  //     points: JSON.stringify([
-  //       {
-  //         title: title1,
-  //         description: description1,
-  //         image_url: imgurl1,
-  //         latitude: 49.282897,
-  //         longitude: -123.120386
-  //       },
-  //       {
-  //         title: title2,
-  //         description: description2,
-  //         image_url: imgurl2,
-  //         latitude: 49.251970,
-  //         longitude: -123.067680
-  //       },
-  //       {
-  //         title: title3,
-  //         description: description3,
-  //         image_url: imgurl3,
-  //         latitude: 49.263910,
-  //         longitude: -123.098690
-  //       }
-  //     ])
-  //   });
-  //   loadUserMaps(1);
-  // });
+
 
   getPoints('#side-bar')
 
