@@ -51,3 +51,4 @@ const getPoints = (target) => {
     }, 100);
   });
 };
+

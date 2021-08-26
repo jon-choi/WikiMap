@@ -18,7 +18,7 @@ $(document).ready(() => {
     `<section class="items">
     <div class="map-link">
     <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
-    <span class="favourite"><i id="${map.id}" class="fas fa-heart fa-lg"></i></span>
+    <span class="favourite"><i id="${map.id}" class="far fa-heart fa-lg"></i></span>
     </div>
     </section>
     `;

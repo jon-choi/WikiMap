@@ -44,7 +44,6 @@ $(document).ready(() => {
         <span class="lat-long"><input type="text" class="lat" placeholder="latitude">
         <input type="text" class="long" placeholder="longitude"></span>
       </div>
-      <span class="add"> <i class="fas fa-plus-circle fa-lg"></i> Add New Points </span>
       <button type="submit" id="point-submit">Submit</button>
     </form>
       `);
@@ -121,8 +120,8 @@ $(document).ready(() => {
     <div class="map-link">
     <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
     <span class="edit-delete">
-    <span id="${map.id}" class="edit"> <i class="fas fa-edit fa-lg"> </i></span>
-    <span id="${map.id}" class="delete"><i class="fas fa-trash fa-lg"></i> </span>
+    <span id="${map.id}" class="edit"> <i class="fas fa-user-edit fa-lg"> </i></span>
+    <span id="${map.id}" class="delete"><i class="fas fa-trash-alt fa-lg"></i> </span>
     </span>
     </div>
     </section>
