@@ -51,7 +51,7 @@ module.exports = (db) => {
       });
   });
 
-  //Retrieve all points from a specific map
+  // Return all points from a specific map
   router.get("/:id/points", (req, res) => {
     const values = req.params.id;
     db.query(`SELECT * FROM points
@@ -67,28 +67,21 @@ module.exports = (db) => {
       });
   });
 
-  // Creates new points for a specific map
-  router.post("/:id", (req, res) => {
-    const values = req.params.id;
-    const points = req.body.points;
-    const parsed = JSON.parse(points);
-    const promises = [];
-
-    for (const point of parsed) {
-      const promise = db.query(`INSERT INTO points (map_id, title, description, latitude, longitude, image)
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [values, point.title, point.description, point.latitude, point.longitude, point.image]);
-      promises.push(promise);
-    }
-    Promise.all(promises)
-      .then(data => {
-        const maps = data.rows;
-        res.json({ maps });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  // Creates new points
+  router.patch("/:id", (req, res) => {
+    const { title, description, image, latitude, longitude, id } = req.body;
+    const query = `UPDATE points SET title = $1, description = $2, image = $3, latitude = $4, longitude = $5
+    WHERE map_id = $6  AND id = $7 RETURNING *;`;
+    db.query(query, [title, description, image, latitude, longitude, req.params.id, id])
+    .then(data => {
+      const maps = data.rows[0];
+      res.json({ maps });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   });
 
   // Deletes a map
@@ -106,16 +99,11 @@ module.exports = (db) => {
   });
 
   // Edits a point
-  router.patch("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
     const values = req.params.id;
-    const { title, description, image, latitude, longitude, id } = req.body;
-    const query = `UPDATE points SET title = $1,
-    description = $2,
-    image = $3,
-    latitude = $4,
-    longitude = $5
-    WHERE map_id = $6 AND id = $7 RETURNING *;`;
-    db.query(query, [title, description, image, latitude, longitude, values, id])
+    const { title, description, image, latitude, longitude } = req.body;
+    const query = `INSERT INTO points (title, description, image, latitude, longitude, map_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    db.query(query, [title, description, image, latitude, longitude, values])
     .then(data => {
       const maps = data.rows;
       res.json({maps});
@@ -123,6 +111,7 @@ module.exports = (db) => {
     .catch(err => {
       res.status(500).json({error: err.message});
     });
+
   });
 
 

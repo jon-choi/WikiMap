@@ -17,8 +17,8 @@ const createMarkers = (markers) => {
     });
     let infoWindow = new google.maps.InfoWindow({
       content: contentString,
-      minWidth: 300,
-      maxWidth: 300
+      minWidth: 500,
+      maxWidth: 500
     });
     marker.addListener('click', function() {
       infoWindow.open(map, marker);
@@ -27,7 +27,7 @@ const createMarkers = (markers) => {
 }
 
 const loadPoints = (id) => {
-  $.get(`/maps/${id}/points`, (res) => {
+  $.ajax(`/maps/${id}/points`, (res) => {
     for (const latlong of res.maps) {
       markers.push([latlong.latitude, latlong.longitude]);
     }
@@ -38,7 +38,7 @@ const getPoints = (target) => {
   const $getpoint = $(target);
   $getpoint.on('click', 'button', function(event) {
     markers = [];
-    loadPoints(event.target.id);
+    $(event.target.id);
     setTimeout(() => {
       $(() => {
         const options = {
@@ -51,3 +51,4 @@ const getPoints = (target) => {
     }, 100);
   });
 };
+
