@@ -61,8 +61,24 @@ app.use('/users', usersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const user = req.session.user;
+  res.render("index", {user});
 });
+//**check-in check-out session */
+app.get('/login', (req, res) => {
+
+  req.session.user = req.query.user;
+  const user = req.session.user;
+  console.log("---------------------",user);
+  res.redirect('/');
+
+})
+
+app.get('/logout', (req, res) => {
+  req.session = null;
+  res.redirect('/');
+})
+//**END check-in check-out session */
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
