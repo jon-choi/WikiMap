@@ -29,7 +29,7 @@
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 1em;
-    font-size: 0.8em;
+    font-size: 1em;
   }
 
   .point-btn {
@@ -39,13 +39,13 @@
     background-color: transparent;
     outline: none;
     color: #FFFF;
-    font-size: 2em;
+    font-size: 1em;
     letter-spacing: 2px;
     cursor: pointer;
     padding: 0.5em;
     &:hover {
       color: #c4ac7c;
-      text-shadow: 0px 10px 10px #2b3430;
+      text-shadow: 0px 3px 3px #2b3430;
     }
   }
 
@@ -54,7 +54,7 @@
     padding-right: 3em;
     &:hover {
       color: #e31b23;
-      text-shadow: 0px 5px 10px #2b3430;
+      text-shadow: 0px 3px 3px #2b3430;
     }
   }
 
@@ -71,7 +71,7 @@
     cursor: pointer;
     &:hover {
       color: #eeda2b;
-      text-shadow: 0px 5px 10px #2b3430;
+      text-shadow: 0px 3px 3px #2b3430;
     }
   }
 
@@ -83,7 +83,7 @@
     padding-left: 0.8em;
     &:hover {
       color: #B33A3A;
-      text-shadow: 0px 5px 10px #2b3430;
+      text-shadow: 0px 3px 3px #2b3430;
     }
   }
 
