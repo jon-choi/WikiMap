@@ -13,7 +13,8 @@ const createMarkers = (markers) => {
     let latLng = new google.maps.LatLng(coords[0], coords[1]);
     let marker = new google.maps.Marker({
       position: latLng,
-      map: map
+      map: map,
+      // icon: coords.image,
     });
     let infoWindow = new google.maps.InfoWindow({
       content: contentString,
