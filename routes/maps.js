@@ -35,6 +35,24 @@ module.exports = (db) => {
       });
   });
 
+  // GETS particular point
+  router.get("/:id/point", (req, res) => {
+    const values = req.params.id;
+    db.query(`SELECT * FROM points
+    WHERE id = $1;`, [values])
+      .then(data => {
+        const point = data.rows[0];
+        res.json( point );
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
+
   // Creates new map
   router.post("/", (req, res) => {
     const { user_id, title, description } = req.body;
@@ -53,12 +71,13 @@ module.exports = (db) => {
 
   // Return all points from a specific map
   router.get("/:id/points", (req, res) => {
+    //console.log("****************values", values);
     const values = req.params.id;
     db.query(`SELECT * FROM points
     WHERE map_id = $1`, [values])
       .then(data => {
-        const maps = data.rows;
-        res.json({ maps });
+        const points = data.rows;
+        res.json(points);
       })
       .catch(err => {
         res
@@ -67,15 +86,16 @@ module.exports = (db) => {
       });
   });
 
-  // Creates new points
+  // Update point
   router.patch("/:id", (req, res) => {
     const { title, description, image, latitude, longitude, id } = req.body;
     const query = `UPDATE points SET title = $1, description = $2, image = $3, latitude = $4, longitude = $5
-    WHERE map_id = $6  AND id = $7 RETURNING *;`;
-    db.query(query, [title, description, image, latitude, longitude, req.params.id, id])
+    WHERE id = $6  RETURNING *;`;
+    db.query(query, [title, description, image, latitude, longitude, req.params.id])
     .then(data => {
-      const maps = data.rows[0];
-      res.json({ maps });
+      console.log("updateeeeeeeeee");
+      const point = data.rows[0];
+      res.json(point);
     })
     .catch(err => {
       res
@@ -84,7 +104,7 @@ module.exports = (db) => {
     });
   });
 
-  // Deletes a map
+  // Delete a map
   router.delete("/:id/delete", (req, res) => {
     const values = req.params.id;
     db.query(`DELETE FROM maps WHERE id = $1`, [values])
@@ -98,7 +118,7 @@ module.exports = (db) => {
       });
   });
 
-  // Edits a point
+  // Isert a point
   router.put("/:id", (req, res) => {
     const values = req.params.id;
     const { title, description, image, latitude, longitude } = req.body;

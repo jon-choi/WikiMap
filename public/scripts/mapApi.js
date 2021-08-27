@@ -49,3 +49,62 @@
 //   });
 
 // }
+// function initMap() {
+//   let options = {
+//     zoom: 12,
+//     center: { lat: 49.25922, lng: -123.09233 },
+//   }
+//   let map = new google.maps.Map(document.getElementById('map'), options);
+
+//   let marker = [
+//   {//---- RESTAURANTS
+//     coords: {lat: 49.25737, lng: -123.12107 },
+//     content: '`<h1>Corduroy Pie Co</h1></br><h2>Best pizza in the city</h2><img src="https://tryhiddengems.com/wp-content/uploads/2017/11/cororoypiecompany3-1024x576.jpg">`'
+//   },
+//   {
+//     coords: {lat: 49.25552, lng: -123.11345 },
+//     content: '`<h1>Viet House</h1></br><h2>Delicious pho</h2><img src="https://vancouverfoodster.com/wp-content/uploads/2018/01/IMG_1071-1-e1514840163771-225x300.jpg">`'
+//   },
+//   {
+//     coords: {lat: 49.26347, lng: -123.11656 },
+//     content: '`<h1>Benkei Ramen</h1></br><h2>Amazing ramen</h2><img src="https://s3-media0.fl.yelpcdn.com/bphoto/0Sjl7KNQK1TccXqfYWrnzw/l.jpg">`'
+//   },
+//   {//---- COCKTAIL BARS
+//     coords: {lat: 49.28467, lng: -123.10821 },
+//     content: '`<h1>Pourhouse</h1></br><h2>Great cocktails</h2><img src="https://images.squarespace-cdn.com/content/v1/5db9f5cc0e8af224964d841a/1580246617574-Q908ORKB6YC2VZ1K0JED/DSCF8330.jpg?format=1500w">`'
+//   },
+//   {
+//     coords: {lat: 49.26424, lng: -123.09357 },
+//     content: '`<h1>The Cascade Room</h1></br><h2>Crafted cocktails</h2><img src="https://i0.wp.com/media.scoutmagazine.ca/2018/03/11-Cascade.jpeg?resize=1600%2C1067&ssl=1">`'
+//   },
+//   {
+//     coords: {lat: 49.26740, lng: -123.13935},
+//     content: '`<h1>Grapes & Soda</h1></br><h2>Cocktails and Tapas</h2><img src="https://s3-media0.fl.yelpcdn.com/bphoto/wsMRvJZwyczcZMdhmuPNgA/l.jpg">`'
+//   },
+//   {//---- COFFEE SHOPS
+//     coords: {lat: 49.25591, lng: -123.11548},
+//     content: '`<h1>JJ Bean</h1></br><h2>Best coffee</h2><img src="https://media.scoutmagazine.ca/2017/06/jj_main.jpg">`'
+//   },
+
+//   ];
+//   for (let i = 0; i < marker.length; i++) {
+//     addMarker(marker[i]);
+//   }
+
+//   // add marker function
+//   function addMarker(props){
+//     let marker = new google.maps.Marker({
+//       position: props.coords,
+//       map: map,
+//     });
+//     if (props.content) {
+//       let infoWindow = new google.maps.InfoWindow({
+//         content: props.content
+//       })
+//       marker.addListener('click', function() {
+//         infoWindow.open(map, marker);
+//       })
+//     }
+
+//   }
+// }
