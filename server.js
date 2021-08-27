@@ -61,15 +61,14 @@ app.use('/users', usersRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   //req.session.user = req.query.user;
-  const user = req.session.user;
-  res.render("index", {user});
+  const userLogin = req.session.user;
+  res.render("index", {userLogin});
 });
 //**check-in check-out session */
 app.get('/login', (req, res) => {
 
   req.session.user = req.query.user;
-  const user = req.session.user;
-  console.log("---------------------",user);
+  const userLogin = req.session.user;
   res.redirect('/');
 
 })

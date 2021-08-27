@@ -9,11 +9,13 @@ const header = (title) => {
 
 const createMarkers = (markers) => {
   for (const coords of markers) {
-    let contentString = '`<h1>place</h1><img src="https://upload.wikimedia.org/wikipedia/en/7/70/Bob_at_Easel.jpg">`';
+    let contentString = '`<h1><%= coords.title %></h1><img src="${coords.image}">`';
     let latLng = new google.maps.LatLng(coords[0], coords[1]);
     let marker = new google.maps.Marker({
       position: latLng,
-      map: map
+      map: map,
+      // icon: coords.image,
+      // content: coords.title,
     });
     let infoWindow = new google.maps.InfoWindow({
       content: contentString,

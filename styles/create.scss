@@ -1,9 +1,9 @@
 #new-map {
   display: flex;
   flex-direction: column;
-  padding-left: 1.3em;
-  padding-right: 4.6em;
-  padding-top: 2.4em;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
 
   h2 {
     color: #FFFF;
@@ -11,21 +11,21 @@
     letter-spacing: 2px;
     font-size: 36px;
     margin: 0.6em;
-    padding-bottom: 2.2em;
+    padding-bottom: 10px;
   }
 
   #new-map-title {
     margin: 1em;
     outline: none;
-    padding: 0.5em;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 1em;
   }
 
   #new-map-description {
     margin: 1em;
     outline: none;
     padding: 0.5em;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   #submit-btn {
@@ -41,7 +41,7 @@
     font-size: 20px;
     &:hover {
       color: #2b3430;
-      box-shadow: 0px 8px 10px #2b3430;;
+      box-shadow: 0px 3px 3px #2b3430;;
     }
   }
 

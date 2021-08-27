@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="/styles/create.css" type="text/css" />
     <link rel="stylesheet" href="/styles/points.css" type="text/css" />
     <link rel="stylesheet" href="/styles/edit.css" type="text/css" />
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
   </head>
 
   <nav>
@@ -26,15 +30,15 @@
 
 
     <ul class="nav-links">
-    <% if (!user) { %>
+    <% if (!userLogin) { %>
 
       <li id="users">
         <a href="/login?user=Emily"> Login </a>
     <% } else { %>
       <li id="create">Create New Map</li>
       <li id="my-maps">My Maps</li>
-        <h5><%=user%></h5>
-        <a href="/logout"> Logout </a>
+      <li> <%=userLogin%></li>
+      <li><a href="/logout"> Logout </a></li>
     <% } %>
 
       </li>
@@ -49,7 +53,7 @@
 
     <section id="side-bar">
       <!-- Maps list is populated in this section -->
-      <section class="items"></section>
+    <section id="#points-container" class="items"></section>
     </section>
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -60,9 +64,13 @@
     <script type="text/javascript" src="/scripts/map.js"></script>
 
     <!-- google api -->
-    <script
+    <!-- <script
       type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAA346O0hQdjJvizLWGcH4pd6SI1xrihs&callback=initMap">
-    </script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uLHminQZbnRgB_H7SikYehIPfJvEUGo&callback=initMap">
+    </script> -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uLHminQZbnRgB_H7SikYehIPfJvEUGo&callback=initMap&libraries=&v=weekly"
+    async
+  ></script>
   </body>
 </html>
