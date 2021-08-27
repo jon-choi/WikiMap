@@ -31,6 +31,13 @@ The following steps are only for _one_ of the group members to perform.
   A web app that allows users to collaboratively create maps which list multiple "points". For example: "Best Places to Eat Around Town" or "Locations of Movie Scenes".
   Users are able to view a list of available maps and create their own if they choose to do so.
 
+## Screenshots
+  !['Create new map page'](https://github.com/jon-choi/WikiMap/blob/master/docs/Create%20New%20Map.png?raw=true)
+
+  !['User home page'](https://github.com/jon-choi/WikiMap/blob/master/docs/Home%20Screen.png?raw=true)
+
+  !['Map with Markers'](https://github.com/jon-choi/WikiMap/blob/master/docs/Map%20with%20Markers.png?raw=true)
+
 ## Dependencies
 
 - Node 10.x or above
