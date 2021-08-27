@@ -43,12 +43,13 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+          justify-content: flex-end;
 }
 
 .nav-links li {
   list-style: none;
   letter-spacing: 2px;
-  font-size: 1.5em;
+  font-size: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,6 +57,7 @@ nav {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+          justify-content: flex-end;
   cursor: pointer;
 }
 

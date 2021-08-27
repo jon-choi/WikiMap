@@ -35,7 +35,7 @@ module.exports = (db) => {
       });
   });
 
-  // GETS particular point
+  // GET particular point
   router.get("/:id/point", (req, res) => {
     const values = req.params.id;
     db.query(`SELECT * FROM points
@@ -53,7 +53,7 @@ module.exports = (db) => {
 
 
 
-  // Creates new map
+  // Create new map
   router.post("/", (req, res) => {
     const { user_id, title, description } = req.body;
     db.query(`INSERT INTO maps (user_id, title, description)
@@ -71,12 +71,12 @@ module.exports = (db) => {
 
   // Return all points from a specific map
   router.get("/:id/points", (req, res) => {
-    //console.log("****************values", values);
     const values = req.params.id;
     db.query(`SELECT * FROM points
     WHERE map_id = $1`, [values])
       .then(data => {
         const points = data.rows;
+        //console.log("****************values", points);
         res.json(points);
       })
       .catch(err => {
@@ -86,14 +86,15 @@ module.exports = (db) => {
       });
   });
 
-  // Update point
+  // Update a point
   router.patch("/:id", (req, res) => {
-    const { title, description, image, latitude, longitude, id } = req.body;
+    const { title, description, image, latitude, longitude } = req.body;
+    console.log({ title, description, image, latitude, longitude });
     const query = `UPDATE points SET title = $1, description = $2, image = $3, latitude = $4, longitude = $5
     WHERE id = $6  RETURNING *;`;
     db.query(query, [title, description, image, latitude, longitude, req.params.id])
     .then(data => {
-      console.log("updateeeeeeeeee");
+      //console.log("updateeeeeeeeee");
       const point = data.rows[0];
       res.json(point);
     })
@@ -110,6 +111,21 @@ module.exports = (db) => {
     db.query(`DELETE FROM maps WHERE id = $1`, [values])
       .then(data => {
         res.json({ success: true });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ success: false, error: err });
+      });
+  });
+
+  // Delete a point
+  router.delete("/:id/deletePoint", (req, res) => {
+    const value = req.params.id;
+    console.log("object");
+    db.query(`DELETE FROM points WHERE id = $1`, [value])
+      .then(data => {
+        res.json(req.params.id);
       })
       .catch(err => {
         res

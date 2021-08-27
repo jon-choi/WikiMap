@@ -18,12 +18,13 @@ $(document).ready(() => {
     `<section class="items">
     <div class="map-link">
     <input type="submit" value="${map.title}" class="point-btn" id="${map.id}"></input>
-    <span class="favourite"><i id="${map.id}" class="far fa-heart fa-lg"></i></span>
     </div>
     </section>
     `;
     return mapTemplate;
   };
+ // <span class="favourite"><i id="${map.id}" class="far fa-heart fa-lg"></i></span>
+
 
 
 
@@ -80,19 +81,21 @@ $(document).ready(() => {
 //************************google maps */
   function initMap(arr) {
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 12,
+      zoom: 13,
       center: { lat: 49.25922, lng: -123.09233 },
     });
 
     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     const markers = arr.map((location, i) => {
+
       return new google.maps.Marker({
         position: location,
+        title: "test",
         label: labels[i % labels.length],
 
       });
-    });
+    });console.log(markers);
     // Add a marker clusterer to manage the markers.
     new MarkerClusterer(map, markers, {
       imagePath:
@@ -120,15 +123,13 @@ $(document).ready(() => {
     initMap(arr);
   };
 
-  const loadP = ($) => {
+  const loadP = ($, map_id) => {
 
-    $.get(`maps/${1}/points`)
+    $.get(`maps/${map_id}/points`)
       .then((points) => {
         renderPoints($, points);
       });
   };
-
-    loadP($);
+console.log("iiiiiiiiiiii". map_id);
+   loadP($, 1);
 });
-
-

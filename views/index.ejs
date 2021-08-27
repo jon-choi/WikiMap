@@ -29,15 +29,15 @@
 
 
     <ul class="nav-links">
-    <% if (!user) { %>
+    <% if (!userLogin) { %>
 
       <li id="users">
         <a href="/login?user=Emily"> Login </a>
     <% } else { %>
       <li id="create">Create New Map</li>
       <li id="my-maps">My Maps</li>
-        <h5><%=user%></h5>
-        <a href="/logout"> Logout </a>
+      <li> <%=userLogin%></li>
+      <li><a href="/logout"> Logout </a></li>
     <% } %>
 
       </li>
@@ -52,7 +52,7 @@
 
     <section id="side-bar">
       <!-- Maps list is populated in this section -->
-      <section id="#points-container" class="items"></section>
+    <section id="#points-container" class="items"></section>
     </section>
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -63,13 +63,13 @@
     <script type="text/javascript" src="/scripts/map.js"></script>
 
     <!-- google api -->
-    <script async defer
-      type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAA346O0hQdjJvizLWGcH4pd6SI1xrihs&libraries=places&callback=initMap">
-    </script>
     <!-- <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uLHminQZbnRgB_H7SikYehIPfJvEUGo&callback=initMap">
+    </script> -->
+    <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uLHminQZbnRgB_H7SikYehIPfJvEUGo&callback=initMap&libraries=&v=weekly"
     async
-  ></script> -->
+  ></script>
   </body>
 </html>

@@ -11,7 +11,7 @@ $(document).ready(() => {
         <h2>Create New Map</h2>
         <input type="text" id="new-map-title" placeholder="title">
         <input type="text" id="new-map-description" placeholder="description">
-        <button id="submit-btn" type="submit">Next</button>
+        <button id="submit-btn" type="submit">Add</button>
         </form>
       `;
     return formTemplate;
@@ -19,18 +19,20 @@ $(document).ready(() => {
 
   const createPointForm = (map_id) => {
     const pointTemplate = $(`
-      <form id="map-points">
+    <form id="map-points">
       <div id="point1">
-      <h2>Point one</h2>
+      <h2>Create new point</h2>
         <input name="title" type="text" id="title" placeholder="title">
         <input name="description" type="text" id="description" placeholder="description">
         <input name="image" type="url" id="img-url" placeholder="imgURL">
-        <span class="lat-long"><input name="latitude" type="text" class="lat" placeholder="latitude">
-        <input name="longitude" type="text" class="long" placeholder="longitude"></span>
+        <input name="latitude" type="text" class="lat" placeholder="latitude">
+        <input name="longitude" type="text" class="long" placeholder="longitude">
+        <button type="submit" id="point-submit">Add</button>
       </div>
-      <button type="submit" id="point-submit">Submit</button>
     </form>
-      `); console.log(pointTemplate);
+    `);
+
+      console.log(pointTemplate);
       console.log(map_id);
       pointTemplate.submit((event) => {
         event.preventDefault();
@@ -39,7 +41,8 @@ $(document).ready(() => {
         console.log(data)
         $.ajax({url: `/maps/${map_id}`, method: 'put', data})
         .then((result) => {
-          console.log(result);
+          loadPoints(result.maps[0]?.map_id);
+          //console.log("------------------res",result.maps[0]?.id);
         })
 
       });
@@ -51,13 +54,13 @@ $(document).ready(() => {
     const editForm =
       `<form id="edit-points">
         <div id="edit-point1">
-        <h2>Point one</h2>
+          <h4>Point</h4>
           <input name="title" type="text" id="title" placeholder="title" value="${data.title}">
           <input name="description" type="text" id="description" placeholder="description" value="${data.description}">
           <input name="url" type="url" id="image" placeholder="imgURL" value="${data.image}">
           <input name="latitude" type="text" id="latitude" placeholder="imgURL" value="${data.latitude}">
           <input name="longitude" type="text" id="longitude" placeholder="imgURL" value="${data.longitude}">
-          <button type="submit" id="edit-submit-1">Edit</button>
+          <button type="submit" class="edit-submit-1" id="${data.id}">Edit</button>
         </div>
       </form>
       `;
@@ -94,8 +97,8 @@ $(document).ready(() => {
         mapId.push(data.maps.id);
         userId.push(data.maps.user_id);
         emptyContainer();
-    const $sideBarForm = createPointForm(data.maps.id);
-    $sideBar.append($sideBarForm);
+        const $sideBarForm = createPointForm(data.maps.id);
+        $sideBar.append($sideBarForm);
       });
 
 
@@ -105,7 +108,7 @@ $(document).ready(() => {
     const mapTemplate =
       `<section class="items">
         <div class="map-link">
-        <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
+        <input type="submit" value="${map.title}" class="point-btn" id="${map.id}" ></input>
         <span class="edit-delete">
         <span id="${map.id}" class="edit"> <i class="fas fa-user-edit fa-lg"> </i></span>
         <span id="${map.id}" class="delete"><i class="fas fa-trash-alt fa-lg"></i> </span>
@@ -121,17 +124,16 @@ $(document).ready(() => {
       `<section class="items">
         <div class="map-link">
           <input type="submit" value="${point.title}" class="point-btn" id="${point.id}"></input>
-          <span class="edit-delete">
-          <span id="${point.id}" class="edit"> <i class="fas fa-user-edit fa-lg"></i></span>
-          <span id="${point.id}" class="delete"><i class="fas fa-trash-alt fa-lg"></i></span>
-
+          <span id="${point.id}" class="editPoint"> <i class="fas fa-user-edit fa-lg"> </i></span>
+          <span id="${point.id}" class="deletePoint"><i class="fas fa-trash-alt fa-lg"></i> </span>
+          <span class="map_id" id="${point.map_id}">
         </div>
       </section>
       `;
     return pointList;
   };
 
-  const renderPoints = (data) => {
+  const renderPointsList = (data) => {
     emptyContainer();
     const $header = header("My points");
     $('#side-bar').append($header);
@@ -139,6 +141,20 @@ $(document).ready(() => {
       const $point = createPointList(point);
       $('#side-bar').append($point);
     }
+    let map_id = data[0].map_id;
+    $('#side-bar').append(`<button class="new-point" id="${map_id}" type='submit'>Add</button>`);
+      // const $sideBarForm = createPointForm(data.maps.id);
+      // $sideBar.append($sideBarForm);
+      const $newPoint = $('.new-point');
+      $newPoint.click((e) => {
+        e.preventDefault();
+        emptyContainer();
+        const $sideBarForm = createPointForm(e.target.id);
+        $sideBar.append($sideBarForm)
+        //console.log("----rr-------", e.target.id);
+
+      });
+      //loadP(`${e.target.id}`);
   }
 
   const renderUsersMaps = (data) => {
@@ -152,6 +168,13 @@ $(document).ready(() => {
   }
 
 
+  const loadPoints = (id) => {
+    $.get(`/maps/${id}/points`, (res) => {
+      }).then((points) => {
+      //console.log("--------aqui",points);
+      renderPointsList(points);
+    });
+  };
 
   const loadUserMaps = (id) => {
     $.get(`/users/${id}`, (res) => {
@@ -161,67 +184,40 @@ $(document).ready(() => {
 
 
 
-  // //get all the points for one map
-
-  // const renderUsersMaps = (data) => {
-  //   emptyContainer();
-  //   const $header = header("My Maps");
-  //   $('#side-bar').append($header);
-  //   for (const user of data) {
-  //     const $map = createMapItem(user);
-  //     $('#side-bar').append($map);
+  // // function to edit points
+  // $.patch = function(url, data, callback, type) {
+  //   if ($.isFunction(data)) {
+  //     type = type || callback,
+  //       callback = data,
+  //       data = {}
   //   }
-  // };
-
-  // const loadUserMaps = (id) => {
-  //   $.get(`/users/${id}`, (res) => {
-  //     renderUsersMaps(res.users);
+  //   return $.ajax({
+  //     url: url,
+  //     type: 'PATCH',
+  //     success: callback,
+  //     data: data,
+  //     contentType: type
   //   });
-  // };
+  // }
 
 
 
 
-  // function to edit points
-  $.patch = function(url, data, callback, type) {
-    if ($.isFunction(data)) {
-      type = type || callback,
-        callback = data,
-        data = {}
-    }
-    return $.ajax({
-      url: url,
-      type: 'PATCH',
-      success: callback,
-      data: data,
-      contentType: type
-    });
-  }
-
-  // const $pointBtn = $('.edit');
-  // //console.log($pointBtn);
-  // $pointBtn.click((e) => {
-  //   e.preventDefault();
-  //   //console.log(e.target.value);
-  //   $.get(`maps/${e.target.id}/points`)
-  //   .then((points) => {
-  //     console.log("-----hereee----",points);
-  //     renderPoints($, points);
-  //   });
-  // });
-
-
-  //GET to show points per map
+  //Show points per map
   const $edit = $('#side-bar');
   $edit.on('click', '.edit', (event) => {
     $.get(`/maps/${event.currentTarget.id}/points`, (res) => {
       editButton.push(event.currentTarget.id);
       const points = res;
       emptyContainer();
-      const editForm = renderPoints(points);
-      $('#side-bar').append(editForm);
+      const editForm = renderPointsList(points);
+      $('#side-bar').append(editForm)
+
     })
   });
+
+
+
 
   //GET request to edit specific point
   const $editPoint = $('#side-bar');
@@ -229,11 +225,29 @@ $(document).ready(() => {
     $.get(`/maps/${event.currentTarget.id}/point`, (res) => {
        editButton.push(event.currentTarget.id);
        const point = res;
-       console.log("----------here-------",point);
+       //console.log("----------here-------",point);
        emptyContainer();
       const editForm = createEditForm(point);
       $('#side-bar').append(editForm);
     })
+  });
+
+
+
+  // hardcoded user - not changing lat-long yet
+  $edit.on('submit', '.edit-submit-1', (event) => {
+    event.preventDefault();
+    const serialized = $edit.serialize();
+    //console.log("-------$edit-----",$edit);
+    $.ajax({
+    type: "PATCH",
+    url: `/maps/${event.currentTarget.id}`,
+    data: serialized
+  })
+    .then(() => {
+      console.log("doneeeeeeeee");
+      //updatePoint($, point, serialized);
+    });
   });
 
   // hardcoded user - not changing lat-long yet
@@ -275,6 +289,18 @@ $(document).ready(() => {
       loadUserMaps(1);
     });
   });
+
+
+  const $deletePoint = $('#side-bar');
+  $deletePoint.on('click', '.deletePoint', (event) => {
+    $.delete(`/maps/${event.currentTarget.id}/deletePoint`, () => {
+      //loadPoints(`${event.currentTarget.map_id}`);
+    }).then(() => {
+      loadPoints(1);
+    });
+  });
+
+
 
   // Hardcoded user***
   const $myMaps = $('#my-maps');
