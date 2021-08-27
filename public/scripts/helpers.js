@@ -15,7 +15,6 @@ const createMarkers = (markers) => {
       position: latLng,
       map: map,
       // icon: coords.image,
-      // content: coords.title,
     });
     let infoWindow = new google.maps.InfoWindow({
       content: contentString,

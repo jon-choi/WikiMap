@@ -17,7 +17,16 @@ $(document).ready(() => {
     const mapTemplate =
     `<section class="items">
     <div class="map-link">
+<<<<<<< HEAD
+    <button type="submit" class="point-btn" id="${map.id}">${map.title}</button>
+    <span class="favourite"><i id="${map.id}" class="fas fa-heart fa-lg"></i></span>
+=======
     <input type="submit" value="${map.title}" class="point-btn" id="${map.id}"></input>
+<<<<<<< HEAD
+=======
+>>>>>>> 4349af588f289e05108632afadc9808f8018a7a6
+
+>>>>>>> f17b0fad2bacb4684b2edd7a35f0e7b4817727b3
     </div>
     </section>
     `;
